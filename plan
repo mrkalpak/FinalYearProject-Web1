@@ -1,0 +1,42 @@
+Web Module -> {
+    homepage -> random carosel with login and register button
+    login page
+    register page
+    User -> {
+        dashboard
+        goal control
+        profile and update
+        help and support
+    }
+    Admin -> {
+        dashboard
+        goal control
+        profile and update
+        help and support (admin)
+        user management
+        data management
+        request management
+    }
+}
+
+
+Android Module -> {
+    homepage -> data of the health
+    login 
+    register
+    User -> {
+        edit profile
+        chat and support
+    }
+    Admin -> {
+        edit profile
+        chat and support
+        provide help
+    }
+}
+
+Health data -> {
+    step
+    calorie
+    diet plan
+}
