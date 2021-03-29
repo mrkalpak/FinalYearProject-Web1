@@ -1,0 +1,10 @@
+#loginid{
+    display:block;
+     
+    background-image: url('./img/mainbg.png');
+    height:725px ;
+    background-repeat: no-repeat; 
+    width:450px;
+    border:2px solid black;
+    margin: 10% 32.5% 10% 32.5%;
+}

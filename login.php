@@ -1,4 +1,24 @@
-<?php include "./header.php"; ?>
+<?php include "./Iheader.php"; ?>
+
+    
+<form class="mt-5" method="POST">
+  
+  <label for="inputEmail" class="sr-only">Email address</label>
+  <input type="email" id="inputEmail" name="email" class="form-control w-75" placeholder="Email address" required autofocus>
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password" id="inputPassword" name="password" class="form-control w-75" placeholder="Password" required>
+  <br>
+  <button class="btn w-75 btn-outline-primary btn-block" type="submit">Sign in</button>
+  
+</form>
+
+
+
+</div>
+
+</div>
+
+</center>
 <?php
 // session_start();
 if (isset($_POST['email'])) {
@@ -35,4 +55,3 @@ if (isset($_POST['email'])) {
 <!--  while using form use name of password input as "password" -->
 <!-- start of frontend code -->
 <!-- end of frontend code -->
-<?php include "./footer.php"; ?>
