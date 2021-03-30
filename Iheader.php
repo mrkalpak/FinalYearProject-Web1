@@ -36,10 +36,11 @@
         <div style=" 
      display:block;
      
-     background-image: url('./img/mainbg.png');
-     background-size: 350px;
+     background-image: url('./img/1.png');
+     background-size: 100% 100%;
   width: 350px;
   height: 90vh;
+  max-height: 100%;
      background-repeat: no-repeat; 
      border:2px solid #767474
 ;
@@ -48,10 +49,13 @@
      border-radius: 10px 10px 10px 10px;
      ">
 
-<div class="row h-50"></div>
+<div class="row h-50"><div class="col ">
+<center><img src="./img/logo.png" alt="profile" height="100px" width="100px" class="rounded-circle " style="margin-top: 140px;">
+                                <h4 class="mt-2 text-white">User</h4></center></div>
+</div>
         <div class="row h-50">
         
-            <div class="col"></div>
+        <div class="col"></div>
 
             <div class="w-100"></div>
             <div class="col">
