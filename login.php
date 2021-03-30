@@ -42,9 +42,9 @@ if (isset($_POST['email'])) {
             })
             .catch((error) => {
                 //error
-                var msg = error.message
-                alert(msg)
-                document.location = './'
+                
+                
+                document.location = './newregistration.php'
             })
     </script>
 <?php
