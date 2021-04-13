@@ -14,7 +14,7 @@
        
         firebase.database().ref('Goals/'+uid).on('value',(snapshot)=>{
         const data = snapshot.val()
-        document.getElementById('stepGoal').value = data.stepGoal; 
+        document.getElementById('stepGoal').value = data.stepsGoal; 
         document.getElementById('caloriesGoal').value = data.caloriesGoal;        
         })
     }

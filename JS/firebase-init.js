@@ -8,8 +8,20 @@
 //      https://firebase.google.com/docs/web/setup#available-libraries
 
 
-// Your web app's Firebase configuration
-var firebaseConfig = {
+
+  // Your web app's Firebase configuration
+  // var firebaseConfig = {
+  //   apiKey: "AIzaSyDTJarjQJBEXY40k589JHlgy5ZlM-BmciE",
+  //   authDomain: "android-health-monitoring.firebaseapp.com",
+  //   databaseURL: "https://android-health-monitoring-default-rtdb.firebaseio.com",
+  //   projectId: "android-health-monitoring",
+  //   storageBucket: "android-health-monitoring.appspot.com",
+  //   messagingSenderId: "414125539407",
+  //   appId: "1:414125539407:web:5b1c144682029d953baa3a"
+  // };
+  // // Initialize Firebase
+  // firebase.initializeApp(firebaseConfig);
+  var firebaseConfig = {
     apiKey: "AIzaSyCh0c9AoBdHR-DQABLSdfCy8qxDKDjFQPg",
     authDomain: "ai-based-activity-monitoring.firebaseapp.com",
     databaseURL: "https://ai-based-activity-monitoring-default-rtdb.firebaseio.com",

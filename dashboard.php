@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-lg-3">
                 <br>
-                <img src="./img/blank.png"  id="profileImage" alt="fetching" height="200px" width="200px" class="rounded-circle">
+                <img src="./img/blank.png"  id="profileImage" alt="fetching" height="200px" width="200px" style="object-fit: cover;" class="rounded-circle">
                 <h3 class="mt-2">
                     Welcome
                 </h3>
@@ -138,8 +138,8 @@
             var today = new Date(); 
             var dd = today.getDate(); 
             var mm = today.getMonth() + 1; 
-    
-            var yyyy = today.getFullYear(); 
+            var yyyy = today.getFullYear();
+             
             if (dd < 10) { 
                 dd = '0' + dd; 
             } 
@@ -151,7 +151,7 @@
             firebase.database().ref('Data/'+uid+"/"+today).on('value',(snapshot1)=>{
                 firebase.database().ref('Goals/'+uid).on('value',(snapshot2)=>{
                     var steps = snapshot1.val().steps
-                    var stepGoal = snapshot2.val().stepGoal
+                    var stepGoal = snapshot2.val().stepsGoal
                     var calorieGoal = snapshot2.val().caloriesGoal
                     document.getElementById('stepProgress').innerHTML=steps+"/"+stepGoal
                     if(parseFloat(steps)>=parseFloat(stepGoal)){
@@ -187,7 +187,10 @@
             });
             var x = 0
             document.getElementById('statisticsBody').innerHTML=""
-            for(i=rows.length-1;i>=rows.length-5;i--){
+            var t=rows.length-5
+            if (t<0)
+                t=rows.length
+            for(i=rows.length-1;i>=t;i--){
                 addRow(rows[i][0],rows[i][1])
                 x=x+1
                 if(x>=10){
@@ -197,7 +200,10 @@
             x=0
             dates = []
             steps = []
-            for(i=rows.length-5;i<rows.length;i++){
+            i=rows.length-5
+            if(i<0)
+                i=rows.length
+            for(;i<rows.length;i++){
                 x=x+1
                 dates.push(rows[i][0])
                 steps.push(rows[i][1])

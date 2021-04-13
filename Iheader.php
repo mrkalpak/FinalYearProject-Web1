@@ -43,7 +43,7 @@
 
             <div class="row h-50">
                 <div class="col ">
-                    <center><img src="./img/logo1.png" alt="profile" height="100px" width="100px" class="rounded-circle " style="margin-top: 75px;">
+                    <center><img src="./img/logo2.png" alt="profile" height="100px" width="100px" class="rounded-circle " style="margin-top: 75px;">
                         <h4 class="mt-2 text-white">Android Health Monitoring</h4>
                     </center>
                 </div>
