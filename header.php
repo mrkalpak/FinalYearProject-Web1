@@ -92,11 +92,11 @@
 
                             </span>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right"" aria-labelledby=" navbarDropdown">
+                        <div class="dropdown-menu dropdown-menu-right"  aria-labelledby=" navbarDropdown">
                             <a class="dropdown-item" href="profile.php">
-                                <center><img src="./img/blank.png" alt="profile" height="50px" width="50px"
+                                <center><img src="./img/blank.png" id="profilepic" alt="profile" height="50px" width="50px"
                                         class="rounded-circle">
-                                    <h6 class="mt-2">User</h6>
+                                    <h6 class="mt-2" id="user">User</h6>
                                 </center>
                             </a>
                             <div class="dropdown-divider"></div>
@@ -126,3 +126,38 @@
             </div>
         </nav>
     </div>
+<script>
+
+    firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        uid = user.uid
+       
+        hgetData(uid)
+
+    } else {
+        alert('User Validation Failed')
+        document.location = './'
+    }
+})
+// fetching data
+
+function hgetData(uid) {
+    firebase.database().ref('Users/' + uid).on('value', (snapshot) => {
+        const data = snapshot.val()
+
+        document.getElementById('user').innerHTML = data.name;
+    firebase.storage().ref('images/' + uid).getDownloadURL()
+            .then((url) => {
+                var img = document.getElementById('profilepic');
+                img.setAttribute('src', url);
+                
+            })
+            .catch((error) => {
+                var img = document.getElementById('profilepic');
+                img.setAttribute('src', './img/image.jpg');
+            });
+        });
+        }
+   
+            </script>
+        

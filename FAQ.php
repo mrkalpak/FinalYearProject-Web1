@@ -1,94 +1,35 @@
 <?php include "./header.php"; ?>
-<script>
-  var database = firebase.database();
-  var queid;
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      uid = user.uid
-      fetchData(uid)
 
-    } else {
-      alert('User Validation Failed')
-      document.location = './'
+<div id="content" class="w-75 mx-auto">     
+        <h3 class="text-center">
+            FAQ
+        </h3>     
+</div>
+
+<script>
+  
+  firebase.database().ref('FAQ').on('value', (snapshot) => {
+    try {
+      snapshot.forEach(s => {
+        // console.log(s)
+        const data = s.val();
+        document.getElementById('content').innerHTML+= '<div class="card mt-3">\
+  <div class="card-header">\
+   '+data.question+'\
+  </div>\
+  <div class="card-body">\
+    <blockquote class="blockquote mb-0">\
+    '+data.answer+'\
+    </blockquote>\
+  </div>\
+</div>'
+
+  
+      });
+    } catch (e) {
+      console.log(e);
     }
   })
-
-  function fetchData(uid) {
-
-    firebase.database().ref('Users/' + uid).on('value', (snapshot) => {
-      const data = snapshot.val();
-      document.getElementById('name').setAttribute('value', "" + data.name)
-      document.getElementById('email').setAttribute('value', "" + data.email)
-    });
-
-
-  }
-  function submitdata() {
-    var name = document.getElementById('name').value
-    var email = document.getElementById('email').value
-    var title = document.getElementById('title').value
-    var question = document.getElementById('question').value
-    firebase.database().ref('questions/').on('value', (snapshot) => {
-          const data = snapshot.val();
-          queid = data.count
-          alert(""+queid);
-        });
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-       
-        firebase.database().ref('questions/' + queid).set({
-          name: name,
-          email: email,
-          title: title,
-          question: question
-
-        }).then((result) => {
-          queid =queid+1
-          firebase.database().ref('questions/').set({
-            
-            count: queid
-          }).then((result) => {
-            // alert('We answer you shortly')
-            // document.location='./changeGoal.php'
-          }).catch((err) => {
-            alert('Error : ' + err)
-            // document.location='./changeGoal.php'
-          });
-          alert('We answer you shortly')
-
-        }).catch((err) => {
-          alert('Error : ' + err)
-
-        });
-
-      }
-    });
-    return false;
-  }
 </script>
-<div class="container my-3 " style="width: 50%; border: 2px solid lightgrey; border-radius: 10px;">
-  <form method="POST" action="" onsubmit="return submitdata()">
 
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" readonly class="form-control" name="name" id="name">
-    </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" readonly class="form-control" name="email" id="email" value="">
-    </div>
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input type="text" class="form-control" id="title" name="title">
-    </div>
-    <div class="form-group">
-      <label for="question">Question</label>
-      <textarea name="question" id="question" cols="30" rows="5" class="form-control"></textarea>
-      <div class="text-center my-3">
-        <button type="submit" class="btn btn-primary text">Submit</button>
-      </div>
-    </div>
-
-
-
-    <?php include "./footer.php"; ?>
+ <?php include "./footer.php"; ?>
