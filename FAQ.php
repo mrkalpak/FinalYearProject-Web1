@@ -1,13 +1,15 @@
 <?php include "./header.php"; ?>
-
+<div id="mainContainerDiv">
 <div id="content" class="w-75 mx-auto">     
         <h3 class="text-center">
             FAQ
         </h3>     
 </div>
-
+</div>
 <script>
-  
+  document.getElementById('mainContainerDiv').style.visibility="hidden"
+document.getElementById('loading').style.visibility="visible"
+
   firebase.database().ref('FAQ').on('value', (snapshot) => {
     try {
       snapshot.forEach(s => {
@@ -23,7 +25,8 @@
     </blockquote>\
   </div>\
 </div>'
-
+document.getElementById('loading').style.visibility="hidden"
+        document.getElementById('mainContainerDiv').style.visibility="visible"
   
       });
     } catch (e) {

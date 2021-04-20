@@ -37,6 +37,7 @@
         display: none;
     }
 </style>
+<div id="mainContainerDiv">
 <div class=" mx-auto mt-3 mb-3" style=" border: 2px solid lightgrey; border-radius: 10px; width: 50%; ">
 
     <div class="profile-pic-div mt-3" >
@@ -94,6 +95,7 @@
     <center><a href="" onclick="return resetpass() ">Click here for reset password</a></center>
 </div>
 </div>
+</div>
 <script>
 
     
@@ -103,6 +105,8 @@
   const uploadBtn = document.querySelector('#uploadBtn');
   var gender = "none";
   var Imgname, ImgUrl;
+  document.getElementById('mainContainerDiv').style.visibility="hidden"
+document.getElementById('loading').style.visibility="visible"
 
   
 
@@ -173,6 +177,8 @@
         .then((url) => {
           var img = document.getElementById('photo');
           img.setAttribute('src', url);
+          document.getElementById('loading').style.visibility="hidden"
+        document.getElementById('mainContainerDiv').style.visibility="visible"
           
         })
         .catch((error) => {
