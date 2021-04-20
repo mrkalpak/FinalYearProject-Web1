@@ -18,7 +18,8 @@
 
 </div>
 
-</center>
+</center> </div>
+
 <?php
 // session_start();
 if (isset($_POST['email'])) {
@@ -28,7 +29,8 @@ if (isset($_POST['email'])) {
     <script>
         var email = "<?php echo $email; ?>"
         var password = "<?php echo $password; ?>"
-
+        document.getElementById('mainContainerDiv').style.visibility="hidden"
+document.getElementById('loading').style.visibility="visible"
         firebase.auth().signInWithEmailAndPassword(email, password).then((user) => {
                 //signin
                 firebase.auth().onAuthStateChanged((user) => {

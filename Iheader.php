@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Android Health Monitoring</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
+   
 </head>
 
 
@@ -25,8 +26,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <center>
-
-
+    <div id="loading" style="height:0px; visibility: hidden;  margin-left: 45%;position: absolute;top: 45%; -ms-transform: translateY(-50%);transform: translateY(-50%);">
+                <center>
+                    <div class="loader"></div>
+                </center>
+            </div>
+    <div id="mainContainerDiv">
         <div style=" 
     display:block;
     background-image: url('./img/1.png');
@@ -40,7 +45,8 @@
     margin-bottom:1%; 
     border-radius: 10px 10px 10px 10px;
     ">
-
+           
+           
             <div class="row h-50">
                 <div class="col ">
                     <center><img src="./img/logo2.png" alt="profile" height="100px" width="100px" class="rounded-circle " style="margin-top: 75px;">

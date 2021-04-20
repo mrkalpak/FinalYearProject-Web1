@@ -6,7 +6,7 @@
 
 </div>
 </div>
-
+</div>
 </center>
 <!-- main code in between -->
 <!-- to do  -->
