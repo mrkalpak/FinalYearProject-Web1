@@ -1,10 +1,5 @@
 <?php include "./header.php"; ?>
-<style>
-    .hr{
-    height: 0.5px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-}
-</style>
+
 <div class="container" id="mainContainerDiv"> 
     <center>
         <h2>
@@ -144,7 +139,7 @@ function fetchData(uid) {
             })
             .catch((error) => {
                 var img = document.getElementById('profileImage');
-                img.setAttribute('src', './img/image.jpg');
+                img.setAttribute('src', './img/blank.jpg');
             });
         var today = new Date();
         var dd = today.getDate();
