@@ -103,7 +103,7 @@
                     //error
                     var msg = error.message
                     alert(msg)
-                    document.location = './'
+                    // document.location = './'
                 })
         </script>
     <?php

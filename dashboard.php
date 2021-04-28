@@ -111,8 +111,8 @@ var stepGoal = 0
 var calorieGoal = 0
 var dates = []
 var steps = []
-document.getElementById('mainContainerDiv').style.visibility="hidden"
-document.getElementById('loading').style.visibility="visible"
+// document.getElementById('mainContainerDiv').style.visibility="hidden"
+// document.getElementById('loading').style.visibility="visible"
 
 // login verification
 firebase.auth().onAuthStateChanged((user) => {
@@ -185,8 +185,9 @@ function fetchData(uid) {
                 }
             })
         })
-        document.getElementById('loading').style.visibility="hidden"
-        document.getElementById('mainContainerDiv').style.visibility="visible"
+        alert("heyehjhkjha")
+        // document.getElementById('loading').style.visibility="hidden"
+        // document.getElementById('mainContainerDiv').style.visibility="visible"
     })
 // printing table
     firebase.database().ref('Data/' + uid).on('value', (s) => {
