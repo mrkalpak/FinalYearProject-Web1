@@ -36,12 +36,16 @@
                 // The signed-in user info.
                 var user = result.user;
                 if (user.uid != null) {
-
-                    if (result.additionalUserInfo.isNewUser) {
-                        document.location = './newregistration.php';
-                    } else {
-                        document.location = './dashboard.php';
-                    }
+                   
+                            firebase.database().ref('User/' + user.uid).on('value', (snapshot) => {
+                                if (snapshot.hasChild('name')) {
+                                    document.location = './dashboard.php';
+                                }else{
+                                    document.location = './newregistration.php';
+                                    
+                                }
+                            });
+                      
 
                 } else {
                     alert("User login Failed");

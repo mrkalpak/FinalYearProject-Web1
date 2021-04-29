@@ -73,8 +73,8 @@
                     </div>
                 </div>
             </div>
-            </center>
-        </div>
+    </center>
+    </div>
     <?php
     // session_start();
     if (isset($_POST['email'])) {
@@ -86,30 +86,31 @@
             var password = "<?php echo $password; ?>"
 
             firebase.auth().signInWithEmailAndPassword(email, password).then((user) => {
-                    //signin
-                    firebase.auth().onAuthStateChanged((user) => {
-                        firebase.database().ref('Admin/' + user.uid).on('value', (snapshot) => {
-                            const data = snapshot.val()
-                            if (data.name) {
-                                document.location = './dashboard.php';
-                            } else {
-                                alert("You are not an admin")
-                            }
-                        });
+            //signin
+            uid = user.uid
+            if (user.uid != null) {
+                firebase.database().ref('Admin/' + user.uid).on('value', (snapshot) => {
+                    if (snapshot.hasChild('name')) {
+                        document.location = './dashboard.php';
+                        
+                    } else {
+                        alert("You are not an admin")
+                    }
+                });
+            }
 
-                    });
-                })
-                .catch((error) => {
-                    //error
-                    var msg = error.message
-                    alert(msg)
-                    // document.location = './'
-                })
+            })
+            .catch((error) => {
+                //error
+                var msg = error.message
+                alert(msg)
+                // document.location = './'
+            })
         </script>
     <?php
         exit;
     }
     ?>
-    
+
 
     <?php include "./footer.php"; ?>
