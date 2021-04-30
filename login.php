@@ -27,42 +27,37 @@ if (isset($_POST['email'])) {
     extract($_POST);
 ?>
     <!--validating for signin using email and password-->
-    <script>
-        var email = "<?php echo $email; ?>"
-        var password = "<?php echo $password; ?>"
-        document.getElementById('mainContainerDiv').style.visibility = "hidden"
-        document.getElementById('loading').style.visibility = "visible"
-        firebase.auth().signInWithEmailAndPassword(email, password).then((user) => {
-                //signin
-                firebase.auth().onAuthStateChanged((user) => {
-                    if (user) {
-                        uid = user.uid
-                        if (user.uid != null) {
-                            firebase.database().ref('User/' + user.uid).on('value', (snapshot) => {
-                                if (snapshot.hasChild('name')) {
-                                    document.location = './dashboard.php';
-                                }
-                            });
-                        }
-                    } else {
-                        alert("User Login Failed")
-                        document.location = './'
+   <script>var email = "<?php echo $email; ?>"
+var password = "<?php echo $password; ?>"
+document.getElementById('mainContainerDiv').style.visibility = "hidden"
+document.getElementById('loading').style.visibility = "visible"
+firebase.auth().signInWithEmailAndPassword(email, password).then((user) => {
+    //signin
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            uid = user.uid
+            if (user.uid) {
+                firebase.database().ref('Users/' + user.uid).on('value', (snapshot) => {
+                    if (snapshot.hasChild('name')) {
+                        document.location = './dashboard.php';
                     }
-
                 });
-            })
-            .catch((error) => {
-                //error
+            }
+        } else {
+            alert("User Login Failed")
+            document.location = './'
+        }
+
+    });
+})
+    .catch((error) => {
+        //error
 
 
-                document.location = './newregistration.php'
-            })
-    </script>
+        document.location = './newregistration.php'
+    })</script>
 <?php
     exit;
 }
 ?>
-<!--  while using form use name of email input as "email" -->
-<!--  while using form use name of password input as "password" -->
-<!-- start of frontend code -->
-<!-- end of frontend code -->
+>

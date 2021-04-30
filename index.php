@@ -20,56 +20,47 @@
 
 </center>
 </div>
-<script>
-    function signupwithgoogle() {
-        var provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth()
-            .signInWithPopup(provider)
-            .then((result) => {
-                document.getElementById('mainContainerDiv').style.visibility = "hidden"
-                document.getElementById('loading').style.visibility = "visible"
-                /** @type {firebase.auth.OAuthCredential} */
-                var credential = result.credential;
+<script >function signupwithgoogle() {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+            document.getElementById('mainContainerDiv').style.visibility = "hidden"
+            document.getElementById('loading').style.visibility = "visible"
+            /** @type {firebase.auth.OAuthCredential} */
+            var credential = result.credential;
 
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                var token = credential.accessToken;
-                // The signed-in user info.
-                var user = result.user;
-                if (user.uid != null) {
-                   
-                            firebase.database().ref('User/' + user.uid).on('value', (snapshot) => {
-                                if (snapshot.hasChild('name')) {
-                                    document.location = './dashboard.php';
-                                }else{
-                                    document.location = './newregistration.php';
-                                    
-                                }
-                            });
-                      
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            var token = credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            if (user.uid != null) {
+               
+                        firebase.database().ref('Users/' + user.uid).on('value', (snapshot) => {
+                            if (snapshot.hasChild('name')) {
+                                document.location = './dashboard.php';
+                            }else{
+                                document.location = './newregistration.php';
+                                
+                            }
+                        });
+                  
 
-                } else {
-                    alert("User login Failed");
-                    document.location = './logout.php';
-                }
+            } else {
+                alert("User login Failed");
+                document.location = './logout.php';
+            }
 
-            }).catch((error) => {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // The email of the user's account used.
-                var email = error.email;
-                // The firebase.auth.AuthCredential type that was used.
-                var credential = error.credential;
-                alert(errorMessage)
-                document.location = './'
+        }).catch((error) => {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            alert(errorMessage)
+            document.location = './'
 
-            });
-    }
-</script>
-
-<!-- for google signup onclick function = "signupwithgoogle()" -->
-<!-- for new register redirect to newregistration.php through document.location -->
-<!-- for already to login.php through document.location -->
-
-<!-- start of frontend code -->
-<!-- end of frontend code -->
+        });
+}</script>

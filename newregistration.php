@@ -8,6 +8,3 @@
 </div>
 </div>
 </center>
-<!-- main code in between -->
-<!-- to do  -->
-<!-- paste link of application download in href -->
