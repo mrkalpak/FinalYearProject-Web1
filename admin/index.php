@@ -60,7 +60,7 @@
 
                     <div class="w-100"></div>
                     <div class="col">
-                        <form class="mt-5" onsubmit="return submit();" method="POST">
+                        <form class="mt-5" onsubmit="return submitForm()" method="POST">
 
                             <label for="inputEmail" class="sr-only">Email address</label>
                             <input type="email" id="inputEmail" name="email" class="form-control w-75" placeholder="Email address" required autofocus>
@@ -76,42 +76,49 @@
     </center>
     </div>
 
-   
-  
+
+
+    <?php include "./footer.php"; ?>
     
-       
-        <script>
-           function submit(){
+
+
+    <script>
+    var userData = []
+
+        function submitForm() {
             var email = document.getElementById("inputEmail").value
             var password = document.getElementById("inputPassword").value
 
             firebase.auth().signInWithEmailAndPassword(email, password).then((user) => {
-            //signin
-            uid = user.uid
-            if (user.uid != null) {
-                firebase.database().ref('Admin/' + user.uid).on('value', (snapshot) => {
-                    if (snapshot.hasChild('name')) {
-                        alert("you are admin")
-                        document.location = './dashboard.php';
-                        
-                    } else {
-                        alert("You are not an admin")
+                    //signin
+                    uid = user.uid
+                    if(uid == null){
+                        uid = user.user.uid;
                     }
-                });
-            }
+                    if (uid != null) {
+                        firebase.database().ref('Admin/' + uid).on('value', (snapshot) => {
+                            if (snapshot.hasChild('name')) {
+                                alert("you are admin")
+                                document.location = './dashboard.php';
 
-            })
-            .catch((error) => {
-                //error
-                var msg = error.message
-                alert(msg)
-                // document.location = './'
-            })
+                            } else {
+                                alert("You are not an admin")
+                            }
+                        });
+                    }else{
+                        console.log('null')
+                    }
+
+                })
+                .catch((error) => {
+                    //error
+                    var msg = error.message
+                    alert(msg)
+                    // document.location = './'
+                })
             return false;
-           }
-        </script>
-   
-   
+        }
+    </script>
 
 
-    <?php include "./footer.php"; ?>
+
