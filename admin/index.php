@@ -60,7 +60,7 @@
 
                     <div class="w-100"></div>
                     <div class="col">
-                        <form class="mt-5" method="POST">
+                        <form class="mt-5" onsubmit="return submit();" method="POST">
 
                             <label for="inputEmail" class="sr-only">Email address</label>
                             <input type="email" id="inputEmail" name="email" class="form-control w-75" placeholder="Email address" required autofocus>
@@ -75,15 +75,15 @@
             </div>
     </center>
     </div>
-    <?php
-    // session_start();
-    if (isset($_POST['email'])) {
-        extract($_POST);
-    ?>
-        <!--validating for signin using email and password-->
+
+   
+  
+    
+       
         <script>
-            var email = "<?php echo $email; ?>"
-            var password = "<?php echo $password; ?>"
+           function submit(){
+            var email = document.getElementById("inputEmail").value
+            var password = document.getElementById("inputPassword").value
 
             firebase.auth().signInWithEmailAndPassword(email, password).then((user) => {
             //signin
@@ -91,6 +91,7 @@
             if (user.uid != null) {
                 firebase.database().ref('Admin/' + user.uid).on('value', (snapshot) => {
                     if (snapshot.hasChild('name')) {
+                        alert("you are admin")
                         document.location = './dashboard.php';
                         
                     } else {
@@ -106,11 +107,11 @@
                 alert(msg)
                 // document.location = './'
             })
+            return false;
+           }
         </script>
-    <?php
-        exit;
-    }
-    ?>
+   
+   
 
 
     <?php include "./footer.php"; ?>
