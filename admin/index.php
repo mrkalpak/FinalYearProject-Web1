@@ -107,6 +107,7 @@
                         });
                     }else{
                         console.log('null')
+                        alert('user id is been null')
                     }
 
                 })
